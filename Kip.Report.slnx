@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="Kip.Report.Api/Kip.Report.Api.csproj" />
+  <Project Path="Kip.Report.Application.Tests/Kip.Report.Application.Tests.csproj" Id="65ed5b6e-8008-4509-8905-ac54db01d601" />
+  <Project Path="Kip.Report.Application/Kip.Report.Application.csproj" Id="21878705-6c56-4344-9879-ab882aeaeefa" />
+  <Project Path="Kip.Report.Domain/Kip.Report.Domain.csproj" />
+  <Project Path="Kip.Report.Infrastructure/Kip.Report.Infrastructure.csproj" Id="c47b0ba2-931b-4e9e-a4da-2fcfedd9331e" />
+</Solution>
