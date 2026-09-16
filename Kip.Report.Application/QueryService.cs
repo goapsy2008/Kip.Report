@@ -43,7 +43,7 @@ public class QueryService
 
         ReportData? reportData = null;
 
-        if (progressFactor >= 1.0f)
+        if (progressFactor >= 1.0)
         {
             reportData = new ReportData { CountSignIn = 12 };
         }

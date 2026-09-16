@@ -37,6 +37,7 @@ namespace Kip.Report.Application.Tests
 
             // Assert
             Assert.Equal(50, queryBeforeExceed.Percent);
+            Assert.Null(queryBeforeExceed.Report);
 
             // Act
             fakeTimeProvider.Advance(TimeSpan.FromMilliseconds(options.Value.Timeout / 2));
@@ -44,6 +45,8 @@ namespace Kip.Report.Application.Tests
 
             // Assert
             Assert.Equal(100, queryAfterExceed.Percent);
+            Assert.NotNull(queryAfterExceed.Report);
+            Assert.Equal(12, queryAfterExceed.Report.CountSignIn);
         }
     }
 }
