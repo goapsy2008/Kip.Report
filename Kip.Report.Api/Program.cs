@@ -25,7 +25,12 @@ builder.Services.Configure<QueryOptions>(
 
 builder.Services.AddSingleton(TimeProvider.System);
 
+builder.Services.AddSingleton<BackgroundReportQueue>();
+builder.Services.AddHostedService<ReportBackgroundWorker>();
+
 var app = builder.Build();
+
+app.UseExceptionHandler();
 
 using (var scope = app.Services.CreateScope())
 {

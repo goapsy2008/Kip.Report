@@ -14,5 +14,9 @@ public record Query
 
     public DateTimeOffset CreatedAt { get; init; }
 
+    public DateTimeOffset? StartedAt { get; init; }
+
+    public bool IsCompleted { get; init; }
+
     public ReportData? Report { get; init; }
 }

@@ -20,12 +20,12 @@ public static class ReportEndpoints
     }
 
     private static async Task<IResult> GetReportInfoAsync(
-        [FromQuery(Name = "user-id")] Guid userId,
+        [FromQuery(Name = "query")] Guid id,
         IMapper mapper,
         QueryService queryService,
         CancellationToken cancellationToken)
     {
-        var query = await queryService.GetAsync(userId, cancellationToken);
+        var query = await queryService.GetAsync(id, cancellationToken);
 
         var response = mapper.Map<QueryResponse>(query);
 
@@ -42,6 +42,6 @@ public static class ReportEndpoints
 
         var resultId = await queryService.AddAsync(query, cancellationToken);
 
-        return Results.Ok(resultId);
+        return Results.Accepted(uri: null, resultId);
     }
 }

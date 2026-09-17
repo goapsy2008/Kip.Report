@@ -3,7 +3,7 @@ using Kip.Report.Domain.Models;
 using Kip.Report.Infrastructure.Models;
 using NpgsqlTypes;
 
-namespace Kip.Report.Api.Mappings;
+namespace Kip.Report.Infrastructure.Mappings;
 
 public class InfrastructureMappingProfile : Profile
 {

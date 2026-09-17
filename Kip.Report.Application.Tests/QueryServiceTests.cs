@@ -28,19 +28,29 @@ namespace Kip.Report.Application.Tests
 
             var options = Options.Create(new QueryOptions { Timeout = 60000 });
 
-            var service = new QueryService(fakeRepository.Object, options, fakeTimeProvider);
+            var queue = new BackgroundReportQueue();
+
+            var service = new QueryService(fakeRepository.Object, queue, options, fakeTimeProvider);
 
             // Act
             var queryId = await service.AddAsync(query, CancellationToken.None);
+
+            // Arrange 
+            repoQuery = repoQuery! with { StartedAt = fakeTimeProvider.GetUtcNow() };
             fakeTimeProvider.Advance(TimeSpan.FromMilliseconds(options.Value.Timeout / 2));
+
+            // Act
             var queryBeforeExceed = await service.GetAsync(queryId, CancellationToken.None);
 
             // Assert
             Assert.Equal(50, queryBeforeExceed.Percent);
             Assert.Null(queryBeforeExceed.Report);
 
-            // Act
+            // Arrange 
+            repoQuery = repoQuery with { IsCompleted = true, Report = new ReportData { CountSignIn = 12 } };
             fakeTimeProvider.Advance(TimeSpan.FromMilliseconds(options.Value.Timeout / 2));
+
+            // Act
             var queryAfterExceed = await service.GetAsync(queryId, CancellationToken.None);
 
             // Assert

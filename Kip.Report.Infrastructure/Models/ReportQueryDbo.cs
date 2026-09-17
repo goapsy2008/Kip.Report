@@ -1,4 +1,5 @@
-﻿using NpgsqlTypes;
+﻿using Kip.Report.Domain.Models;
+using NpgsqlTypes;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -19,4 +20,13 @@ public class ReportQueryDbo
 
     [Column("created_at", TypeName = "timestamp with time zone")]
     public DateTimeOffset CreatedAt { get; set; }
+
+    [Column("started_at", TypeName = "timestamp with time zone")]
+    public DateTimeOffset? StartedAt { get; set; }
+
+    [Column("is_completed")]
+    public bool IsCompleted { get; set; } = false;
+
+    [Column("report_json", TypeName = "jsonb")]
+    public ReportData? Report { get; set; }
 }
